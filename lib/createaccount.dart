@@ -34,6 +34,7 @@ class _CreateState extends State<CreateAccount> {
   TextEditingController dateCtl = TextEditingController();
 
   void _trySubmitForm() {
+    //stub (sending form details to database)
     final bool? isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       debugPrint('Registered successfully ');
@@ -49,6 +50,7 @@ class _CreateState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          //create an app bar
           title: Text('Back'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -69,7 +71,7 @@ class _CreateState extends State<CreateAccount> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Welcome to Rex',
+                    'Welcome to Rex', //title
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
@@ -89,6 +91,7 @@ class _CreateState extends State<CreateAccount> {
                         'Enter your details below to register for an account',
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            //subtitle
                             fontSize: 16,
                             fontFamily: 'Roboto Slab',
                             color: Colors.white),
@@ -209,8 +212,8 @@ class _CreateState extends State<CreateAccount> {
                             lastDate: DateTime.now(),
                           ).then((selectedDate) {
                             if (selectedDate != null) {
-                              dateCtl.text =
-                                  DateFormat('dd-MM-yyyy').format(selectedDate);
+                              dateCtl.text = DateFormat('dd-MM-yyyy').format(
+                                  selectedDate); //create the calendar when clicking on the field
                             }
                           });
                         },
@@ -330,7 +333,10 @@ class _CreateState extends State<CreateAccount> {
                         Text(
                           '• Minimum 1 special character',
                           textAlign: TextAlign.left,
-                          style: TextStyle(fontSize: 11, color: Colors.white),
+                          style: TextStyle(
+                              fontSize: 11,
+                              color:
+                                  Colors.white), //display password requirements
                         )
                       ],
                     ),
@@ -351,7 +357,7 @@ class _CreateState extends State<CreateAccount> {
                       child: Text(
                         "Register",
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 24.0, //create the register button
                         ),
                       ),
                       onPressed: () =>
