@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rex_trading/signup.dart';
+import 'package:rex_trading/loginscreen.dart';
 //import 'package:flutter/rendering.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 //import 'package:flutter/services.dart';
@@ -32,117 +32,119 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-            child: PageView(
-                controller: controller, //creates the onboarding screen
-                onPageChanged: (index) {
-                  setState(() => isLastPage =
-                      index == 5); //specifies the number of pages necessary
-                },
-                children: [
-              pageBuild(
-                  //create the first page
-                  color: Colors.blue,
-                  urlimage: 'asset/stock1.png',
-                  title: 'Welcome to Rex',
-                  subtitle:
-                      'Join our trading app that is trusted by over one milion users',
-                  logo: 'asset/rex.png'),
-              pageBuild(
-                  //create the second page
-                  color: Colors.blue,
-                  urlimage: 'asset/photo-1.png',
-                  title: 'Crypto and Stocks',
-                  subtitle:
-                      'Invest in crypto and stocks on the same app and reduce the hassle',
-                  logo: 'asset/rex.png'),
-              pageBuild(
-                  //create the third page
-                  color: Colors.blue,
-                  urlimage: 'asset/stock3.png',
-                  title: 'Invest in ASX and Wall St.',
-                  subtitle: 'Keep up with your portfolio any time of the day',
-                  logo: 'asset/rex.png'),
-              pageBuild(
-                  //create the fourth page
-                  color: Colors.blue,
-                  urlimage: 'asset/stock4.png',
-                  title: 'Keep up with your capital gains tax',
-                  subtitle:
-                      'Rex will automatically record any capital gains tax which will reduce the arduous effort when tax season arrives',
-                  logo: 'asset/rex.png'),
-              pageBuild(
-                  //create the fifth page
-                  color: Colors.blue,
-                  urlimage: 'asset/stock5.png',
-                  title: 'Get on-demand support',
-                  subtitle:
-                      'Rex has a function that allows investors to directly contact our customer service team for any queries',
-                  logo: 'asset/rex.png'),
-              pageBuild(
-                  //create the sixth page
-                  color: Colors.blue,
-                  urlimage: 'asset/stock6.png',
-                  title: 'Watch our free training videos',
-                  subtitle:
-                      'Rex offers rookie investors with a series of training videos to help them get started',
-                  logo: 'asset/rex.png')
-            ])),
-        bottomSheet:
-            isLastPage //boolean variable, if it is the last page then add a 'Let's Go' button
-                ? TextButton(
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      primary: Colors.white,
-                      backgroundColor: Colors.blue.shade700,
-                      minimumSize: const Size.fromHeight(
-                          80), //size, shape and colour of button
-                    ),
-                    onPressed: () async {
-                      await _storeOnBoardInfo();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              SignUp())); //once the SKIP button is pressed, navigate to the SignUp screen
-                    },
-                    child:
-                        const Text('Let\'s Go', style: TextStyle(fontSize: 24)))
-                : Container(
-                    padding: const EdgeInsets.all(8),
-                    height: 80,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                              onPressed: () async {
-                                await _storeOnBoardInfo();
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignUp()));
-                              },
-                              child: const Text('SKIP')),
-                          Center(
-                              child: SmoothPageIndicator(
-                                  controller: controller,
-                                  count:
-                                      6, //the progress bar in the middle of the bottomsheet (6 circles)
-                                  effect: ScaleEffect(),
-                                  onDotClicked: (index) => controller.animateToPage(
-                                      index,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves
-                                          .fastLinearToSlowEaseIn))), //transition between pages
-                          TextButton(
-                              child: const Text('NEXT'),
-                              onPressed: () => controller.nextPage(
-                                  //'NEXT' button which causes the next page to display
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves
-                                      .decelerate)) //transition between pages
-                        ])));
+    return Material(
+      child: Scaffold(
+          body: Container(
+              child: PageView(
+                  controller: controller, //creates the onboarding screen
+                  onPageChanged: (index) {
+                    setState(() => isLastPage =
+                        index == 5); //specifies the number of pages necessary
+                  },
+                  children: [
+                pageBuild(
+                    //create the first page
+                    color: Colors.blue,
+                    urlimage: 'asset/stock1.png',
+                    title: 'Welcome to Rex',
+                    subtitle:
+                        'Join our trading app that is trusted by over one milion users',
+                    logo: 'asset/rex.png'),
+                pageBuild(
+                    //create the second page
+                    color: Colors.blue,
+                    urlimage: 'asset/photo-1.png',
+                    title: 'Crypto and Stocks',
+                    subtitle:
+                        'Invest in crypto and stocks on the same app and reduce the hassle',
+                    logo: 'asset/rex.png'),
+                pageBuild(
+                    //create the third page
+                    color: Colors.blue,
+                    urlimage: 'asset/stock3.png',
+                    title: 'Invest in ASX and Wall St.',
+                    subtitle: 'Keep up with your portfolio any time of the day',
+                    logo: 'asset/rex.png'),
+                pageBuild(
+                    //create the fourth page
+                    color: Colors.blue,
+                    urlimage: 'asset/stock4.png',
+                    title: 'Keep up with your capital gains tax',
+                    subtitle:
+                        'Rex will automatically record any capital gains tax which will reduce the arduous effort when tax season arrives',
+                    logo: 'asset/rex.png'),
+                pageBuild(
+                    //create the fifth page
+                    color: Colors.blue,
+                    urlimage: 'asset/stock5.png',
+                    title: 'Get on-demand support',
+                    subtitle:
+                        'Rex has a function that allows investors to directly contact our customer service team for any queries',
+                    logo: 'asset/rex.png'),
+                pageBuild(
+                    //create the sixth page
+                    color: Colors.blue,
+                    urlimage: 'asset/stock6.png',
+                    title: 'Watch our free training videos',
+                    subtitle:
+                        'Rex offers rookie investors with a series of training videos to help them get started',
+                    logo: 'asset/rex.png')
+              ])),
+          bottomSheet:
+              isLastPage //boolean variable, if it is the last page then add a 'Let's Go' button
+                  ? TextButton(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0)),
+                        primary: Colors.white,
+                        backgroundColor: Colors.blue.shade700,
+                        minimumSize: const Size.fromHeight(
+                            80), //size, shape and colour of button
+                      ),
+                      onPressed: () async {
+                        await _storeOnBoardInfo();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) =>
+                                LoginScreen())); //once the SKIP button is pressed, navigate to the SignUp screen
+                      },
+                      child: const Text('Let\'s Go',
+                          style: TextStyle(fontSize: 24)))
+                  : Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 80,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(
+                                onPressed: () async {
+                                  await _storeOnBoardInfo();
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()));
+                                },
+                                child: const Text('SKIP')),
+                            Center(
+                                child: SmoothPageIndicator(
+                                    controller: controller,
+                                    count:
+                                        6, //the progress bar in the middle of the bottomsheet (6 circles)
+                                    effect: ScaleEffect(),
+                                    onDotClicked: (index) =>
+                                        controller.animateToPage(index,
+                                            duration: const Duration(
+                                                milliseconds: 500),
+                                            curve: Curves
+                                                .fastLinearToSlowEaseIn))), //transition between pages
+                            TextButton(
+                                child: const Text('NEXT'),
+                                onPressed: () => controller.nextPage(
+                                    //'NEXT' button which causes the next page to display
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves
+                                        .decelerate)) //transition between pages
+                          ]))),
+    );
   }
 
 //new method called pageBuild that will define the structure of each page in the onboarding screen
